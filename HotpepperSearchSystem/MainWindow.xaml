@@ -95,6 +95,11 @@
         <Label Content="都道府県" FontSize="14" HorizontalAlignment="Left" Margin="24,2,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Label Content="ジャンル" FontSize="14" Grid.Column="1" HorizontalAlignment="Left" Margin="20,2,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="店名" FontSize="14" Grid.Column="2" HorizontalAlignment="Left" Margin="25,2,0,0" VerticalAlignment="Top" Grid.Row="1"/>
-        <DataGrid HorizontalAlignment="Left" Height="249" Margin="24,13,0,-258" Grid.Row="2" VerticalAlignment="Top" Width="566" Grid.ColumnSpan="3"/>
+        <DataGrid HorizontalAlignment="Left" Height="249" Margin="24,13,0,-258" Grid.Row="2" VerticalAlignment="Top" Width="566" Grid.ColumnSpan="3">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="店名" Width="100"/>
+                
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
