@@ -56,7 +56,7 @@ namespace HotpepperSearchSystem {
         public string open { get; set; }
         public string other_memo { get; set; }
         public string parking { get; set; }
-        public int party_capacity { get; set; }
+        public string party_capacity { get; set; }
         public string pet { get; set; }
         public Photo photo { get; set; }
         public string private_room { get; set; }
@@ -139,5 +139,7 @@ namespace HotpepperSearchSystem {
     public class Urls {
         public string pc { get; set; }
     }
+
+    
 
 }

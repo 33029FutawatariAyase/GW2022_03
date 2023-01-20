@@ -12,5 +12,11 @@
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}"/>
         </Grid.Background>
+        <DataGrid HorizontalAlignment="Left" Height="308" Margin="24,54,0,0" VerticalAlignment="Top" Width="766">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="店名" Width="100"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

@@ -12,5 +12,7 @@
         <Grid.Background>
             <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}"/>
         </Grid.Background>
+        
+        
     </Grid>
 </Page>

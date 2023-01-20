@@ -21,5 +21,6 @@ namespace HotpepperSearchSystem {
         public Page1() {
             InitializeComponent();
         }
+        
     }
 }
