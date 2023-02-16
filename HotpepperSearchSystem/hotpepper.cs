@@ -25,7 +25,7 @@ namespace HotpepperSearchSystem {
         public string barrier_free { get; set; }
         public Budget budget { get; set; }
         public string budget_memo { get; set; }
-        public int capacity { get; set; }
+        public string capacity { get; set; }
         public string card { get; set; }
         public string _catch { get; set; }
         public string charter { get; set; }

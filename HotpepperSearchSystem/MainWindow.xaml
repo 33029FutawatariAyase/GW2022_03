@@ -6,30 +6,36 @@
         xmlns:local="clr-namespace:HotpepperSearchSystem"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="HotPepperSearch" Height="775.035" Width="1122.643">
-    <Grid Loaded="Grid_Loaded" Margin="0,0,2,6">
+        Title="HotPepperSearch" Height="884.616" Width="1300" Background="White">
+    <Grid Loaded="Grid_Loaded" Margin="0,0,2,0" Height="849" VerticalAlignment="Top" Background="FloralWhite">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="75"/>
             <RowDefinition Height="Auto"/>
+
         </Grid.RowDefinitions>
-        <Frame NavigationUIVisibility="Hidden" Name="myFrame" Loaded="myFrame_Loaded" Navigated="myFrame_Navigated" Grid.ColumnSpan="4" Margin="0,2,-237,-582" Grid.RowSpan="2" Grid.Row="1" />
-        <Button Name="searchButton" Content="検索" Grid.Column="2" HorizontalAlignment="Left" Margin="105,10,0,-40" Grid.Row="2" VerticalAlignment="Top" Width="138" Click="searchButton_Click" Height="52" Grid.ColumnSpan="2" FontSize="20"/>
-        <Image Name="creditImage" Grid.Column="3" HorizontalAlignment="Left" Height="72" Margin="258,10,-189,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="132"/>
-        <Label Content="HOT PEPPER" FontSize="30" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="193" Height="51"/>
-        <TextBox Name="SearchTB" HorizontalAlignment="Left" Margin="100,15,0,-53" TextWrapping="Wrap" VerticalAlignment="Top" Width="405" Height="45" FontSize="21" Grid.Row="2" Grid.ColumnSpan="3"/>
-        <Button Name="prevButton" Content="戻る" Grid.Column="3" HorizontalAlignment="Left" Margin="280,95,-154,-97" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="prevButton_Click"/>
+        <!--
+        <Frame  NavigationUIVisibility="Hidden" Name="myFrame" Loaded="myFrame_Loaded" Navigated="myFrame_Navigated" Grid.ColumnSpan="4" Margin="0,2,-237,-560" Grid.RowSpan="2" Grid.Row="1" />
+        -->
+        <Button Name="searchButton" Content="検索" Grid.Column="2" HorizontalAlignment="Left" Margin="0,84,0,-104" Grid.Row="2" 
+                VerticalAlignment="Top" Width="300" Click="searchButton_Click" Height="52" Grid.ColumnSpan="2" FontSize="30">
+        </Button>
+        <Image Name="creditImage" Grid.Column="3" HorizontalAlignment="Left" Height="84" Margin="507,20,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="146"/>
+        <Label Content="HOT PEPPER" FontSize="32" Foreground="Crimson" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="193" Height="51" FontFamily="Yu Gothic UI Semibold"/>
+        <TextBox Name="SearchTB" HorizontalAlignment="Left" Margin="100,15,0,-53" TextWrapping="Wrap" VerticalAlignment="Top" 
+                 Width="405" Height="45" FontSize="21" Grid.Row="2" Grid.ColumnSpan="3" 
+                 />
         <Label Content="都道府県" FontSize="20" HorizontalAlignment="Left" Margin="10,22,0,0" VerticalAlignment="Top" Grid.Row="1"/>
         <Label Content="ジャンル" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Margin="177,20,0,0" Grid.ColumnSpan="2" Grid.Row="1"/>
         <Label Content="店名" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="24,12,0,-39" Grid.Row="2"/>
-        <ComboBox Name="prefectureComboBox" HorizontalAlignment="Left" Margin="119,17,0,0" VerticalAlignment="Top" Width="254" Height="46" FontSize="22" SelectedIndex="0" Grid.Row="1" Grid.ColumnSpan="2">
-            <ComboBoxItem Content="選択してください(※必須)"/>
+        <ComboBox Name="prefectureComboBox" DropDownClosed="prefectureComboBox_DropDownClosed" HorizontalAlignment="Left" Margin="119,17,0,0" VerticalAlignment="Top" Width="254" Height="46" FontSize="22" SelectedIndex="0" Grid.Row="1" Grid.ColumnSpan="2">
+
             <ComboBoxItem Content="北海道"/>
             <ComboBoxItem Content="青森"/>
             <ComboBoxItem Content="秋田"/>
@@ -78,7 +84,7 @@
             <ComboBoxItem Content="鹿児島"/>
             <ComboBoxItem Content="沖縄"/>
         </ComboBox>
-        <ComboBox Name="genreComboBox" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" Width="254" Height="48" FontSize="22" SelectedIndex="0" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
+        <ComboBox Name="genreComboBox" DropDownClosed="genreComboBox_DropDownClosed" HorizontalAlignment="Left" Margin="70,20,0,0" VerticalAlignment="Top" Width="254" Height="48" FontSize="22" SelectedIndex="0" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2">
             <ComboBoxItem Content="お店のジャンルすべて"/>
             <ComboBoxItem Content="居酒屋"/>
             <ComboBoxItem Content="ダイニングバー・バル"/>
@@ -98,18 +104,61 @@
             <ComboBoxItem Content="カフェ・スイーツ"/>
             <ComboBoxItem Content="その他グルメ"/>
         </ComboBox>
-        <DataGrid HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="766" Grid.ColumnSpan="4" Margin="28,110,0,-533" Grid.Row="2">
+        <DataGrid Name="ShopDataGrid" MouseDown="ShopDataGrid_MouseDown" CanUserSortColumns="False" IsReadOnly="True" AlternatingRowBackground="Azure" SelectionUnit="FullRow" HorizontalAlignment="Left" Height="487" VerticalAlignment="Top" Width="927" Grid.ColumnSpan="4" Margin="28,178,0,-634" Grid.Row="2" AutoGenerateColumns="False">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Setter Property="BorderThickness" Value="0" />
+                </Style>
+            </DataGrid.CellStyle>
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="写真" Width="*"/>
-                <DataGridTextColumn Header="店名" Width="*"/>
-                <DataGridTextColumn Header="住所" Width="*"/>
-                <DataGridTextColumn Header="電話番号" Width="*"/>
-                <DataGridTextColumn Header="営業時間" Width="*"/>
+                <DataGridTemplateColumn Header="写真" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Name="Status" Source="{Binding Picture}"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="店名" MaxWidth="400" Binding="{Binding Name}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="住所" MaxWidth="200" Binding="{Binding Address}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="営業時間" MaxWidth="200" Binding="{Binding Open}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="個室" MaxWidth="200" Binding="{Binding Room}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="駐車場" MaxWidth="200" Binding="{Binding Parking}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
 
             </DataGrid.Columns>
         </DataGrid>
-        <CheckBox Name="parkingCheckBox" Content="駐車場" Grid.Column="3" HorizontalAlignment="Left" Margin="166,38,-41,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.Row="1" Width="76">
+        <CheckBox Name="parkingCheckBox" Content="駐車場" Grid.Column="2" HorizontalAlignment="Left" Margin="171,29,0,-11" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.Row="2" Width="76" Grid.ColumnSpan="2">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleY="1.5" ScaleX="1.5"/>
@@ -119,7 +168,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Name="roomCheckBox" Content="個室" Grid.Column="3" HorizontalAlignment="Left" Margin="292,37,-187,0" Grid.Row="1" VerticalAlignment="Top" Width="96" RenderTransformOrigin="0.5,0.5">
+        <CheckBox Name="roomCheckBox" Content="個室" Grid.Column="3" HorizontalAlignment="Left" Margin="83,29,0,-5" Grid.Row="2" VerticalAlignment="Top" Width="96" RenderTransformOrigin="0.5,0.5">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
@@ -129,7 +178,7 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
-        <CheckBox Content="ペット可" Grid.Column="3" HorizontalAlignment="Left" Margin="411,37,-310,0" Grid.Row="1" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
+        <CheckBox Name="smokingCheckBox" Content="禁煙席" Grid.Column="3" HorizontalAlignment="Left" Margin="176,29,0,-4" Grid.Row="2" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.5,0.5">
             <CheckBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
@@ -139,5 +188,38 @@
                 </TransformGroup>
             </CheckBox.RenderTransform>
         </CheckBox>
+        <Button Name="detailButton" Content="詳しく" Grid.Column="3" FontSize="25" HorizontalAlignment="Left" Margin="383,608,0,-560" Grid.Row="2" VerticalAlignment="Top" Width="150" Height="60" Click="detailButton_Click"/>
+        <DataGrid Name="FavDataGrid" AlternatingRowBackground="Azure" MouseDown="FavDataGrid_MouseDown" IsReadOnly="True" SelectionUnit="FullRow" AutoGenerateColumns="False" Grid.Column="3" HorizontalAlignment="Left" Height="300" Margin="383,84,0,-198" Grid.Row="2" VerticalAlignment="Top" Width="270">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="写真" Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Name="Status" Source="{Binding Picture}"></Image>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="店名" Width="*" Binding="{Binding Name}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Name="addButton" Content="お気に入り追加" Click="addButton_Click" Grid.Column="3" HorizontalAlignment="Left" Margin="383,412,0,-222" Grid.Row="2" VerticalAlignment="Top" Width="120" Height="60"/>
+        <Label Content="お気に入り" FontSize="20" Grid.Column="3" HorizontalAlignment="Left" Margin="383,43,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Label Name="Resultlabel" FontSize="20" Content=" " Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="36,130,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Label Content="グルメ" FontSize="40" Foreground="Crimson" Grid.Column="1" HorizontalAlignment="Left" Margin="70,5,0,0" VerticalAlignment="Top" FontFamily="Yu Gothic UI Semibold"/>
+        <Image Name="iconImage" Grid.Column="1" HorizontalAlignment="Left" Height="47" Margin="22,14,0,0" VerticalAlignment="Top" Width="54"/>
+        <Button Name="delButton" Content="お気に入り削除" Click="delButton_Click" Grid.Column="3" HorizontalAlignment="Left" Margin="533,412,0,-223" Grid.Row="2" VerticalAlignment="Top" Width="120" Height="60"/>
+        <Label Content="画像提供：ホットペッパー グルメ" FontSize="10" Grid.Column="3" HorizontalAlignment="Left" Margin="510,2,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
